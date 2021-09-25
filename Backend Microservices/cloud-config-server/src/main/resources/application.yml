@@ -9,7 +9,7 @@ spring:
       server:
         git:
           uri: https://github.com/advatix/team-3.git
-          username: goyalankush
-          password: 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
+          username: <UserName>
+          password: <Password>
           clone-on-start: true
           search-paths: Backend Microservices/cloud-config-server/config-server
