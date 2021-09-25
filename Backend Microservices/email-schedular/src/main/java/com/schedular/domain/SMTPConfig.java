@@ -22,6 +22,9 @@ public class SMTPConfig extends AbstractDomain {
 
   @Column(name = "ApplicationId", columnDefinition = "int(10)")
   private Integer applicationId;
+  
+  @Column(name = "CustomerId", columnDefinition = "varchar(20)")
+  private String customerId;
 
   @Column(name = "Host", columnDefinition = "varchar(255)")
   private String host;

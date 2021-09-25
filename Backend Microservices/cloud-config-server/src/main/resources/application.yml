@@ -8,8 +8,8 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/goyalankush/SpringBoot-Microservices.git
+          uri: https://github.com/advatix/team-3.git
           username: goyalankush
           password: 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
           clone-on-start: true
-          search-paths: cloud-config-server/config-server
+          search-paths: Backend Microservices/cloud-config-server/config-server

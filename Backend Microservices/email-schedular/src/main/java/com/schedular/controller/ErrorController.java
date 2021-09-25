@@ -2,14 +2,15 @@ package com.schedular.controller;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.ThreadContext;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.schedular.service.ISqlUserJourneyService;
+
 import com.schedular.utils.Constant;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import springfox.documentation.annotations.ApiIgnore;
@@ -21,9 +22,6 @@ import springfox.documentation.annotations.ApiIgnore;
 @ApiIgnore
 @Api(value = "Error Controller", hidden = true)
 public class ErrorController implements org.springframework.boot.web.servlet.error.ErrorController {
-
-  @Autowired
-  private ISqlUserJourneyService userJourneyService;
 
   private Logger log = LogManager.getLogger(getClass());
 
@@ -39,7 +37,6 @@ public class ErrorController implements org.springframework.boot.web.servlet.err
     Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 
     if (status != null) {
-      userJourneyService.updateResponse(ThreadContext.get(Constant.REQUEST_ID), status.toString());
       Integer statusCode = Integer.valueOf(status.toString());
 
       // if (statusCode == HttpStatus.NOT_FOUND.value()) {

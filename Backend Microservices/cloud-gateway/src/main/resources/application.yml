@@ -26,7 +26,17 @@ spring:
               args:
                 name: ACCOUNT-SERVICE
                 fallbackuri: forward:/customerServiceFallBack
-          order: 1
+          order: 1
+        - id: EMAIL-SERVICE
+          uri: lb://EMAIL-SERVICE
+          predicates:
+            - Path=/api/email/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: EMAIL-SERVICE
+                fallbackuri: forward:/emailServiceFallBack
+          order: 2
 
 hystrix:
   command:
@@ -34,7 +44,7 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 4000
+            timeoutInMilliseconds: 40000
 
           
 management:  endpoints:    web:      exposure:        include: hystrix.stream

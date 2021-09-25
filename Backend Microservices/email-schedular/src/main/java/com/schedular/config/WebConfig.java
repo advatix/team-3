@@ -42,10 +42,6 @@ public class WebConfig implements WebMvcConfigurer {
   @Value("${templates.dir}")
   private String templatesDir;
 
-  /** The logging interceptor. */
-  @Autowired
-  private LoggingInterceptor loggingInterceptor;
-
   /**
    * Velocity engine.
    *
@@ -111,16 +107,6 @@ public class WebConfig implements WebMvcConfigurer {
   // resolvers.add(authenticatedArgumentResolver());
   // WebMvcConfigurer.super.addArgumentResolvers(resolvers);
   // }
-
-  /**
-   * Adds the interceptors.
-   *
-   * @param registry the registry
-   */
-  @Override
-  public void addInterceptors(InterceptorRegistry registry) {
-    registry.addInterceptor(loggingInterceptor);
-  }
 
   /**
    * Adds the resource handlers.

@@ -24,23 +24,23 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 // value = {"classpath:db.properties", "classpath:mailconfig.properties"})
 @PropertySource(ignoreResourceNotFound = true,
     value = {
-        "file:${" + SmsSchedulerApplication.PROPERTIES_LOCATION_ENV + "}/"
-            + SmsSchedulerApplication.APPLICATION_PROPERTY + ".properties",
-        "file:${" + SmsSchedulerApplication.PROPERTIES_LOCATION_ENV + "}/"
-            + SmsSchedulerApplication.DB_PROPERTY + ".properties",
-        "file:${" + SmsSchedulerApplication.PROPERTIES_LOCATION_ENV + "}/"
-            + SmsSchedulerApplication.MAIL_PROPERTY + ".properties",
-        "file:${" + SmsSchedulerApplication.PROPERTIES_LOCATION_ENV + "}/"
-            + SmsSchedulerApplication.ERROR_MESSAGES_PROPERTY + ".properties"})
-public class SmsSchedulerApplication {
+        "file:${" + EmailSchedulerApplication.PROPERTIES_LOCATION_ENV + "}/"
+            + EmailSchedulerApplication.APPLICATION_PROPERTY + ".yml",
+        "file:${" + EmailSchedulerApplication.PROPERTIES_LOCATION_ENV + "}/"
+            + EmailSchedulerApplication.DB_PROPERTY + ".properties",
+        "file:${" + EmailSchedulerApplication.PROPERTIES_LOCATION_ENV + "}/"
+            + EmailSchedulerApplication.MAIL_PROPERTY + ".properties",
+        "file:${" + EmailSchedulerApplication.PROPERTIES_LOCATION_ENV + "}/"
+            + EmailSchedulerApplication.ERROR_MESSAGES_PROPERTY + ".properties"})
+public class EmailSchedulerApplication {
 
-  private static Logger log = Logger.getLogger(SmsSchedulerApplication.class);
+  private static Logger log = Logger.getLogger(EmailSchedulerApplication.class);
 
   public static final String PROPERTIES_LOCATION_ENV = "spring.config.location";
-  public static final String APPLICATION_PROPERTY = "sms-application";
-  public static final String DB_PROPERTY = "sms-db";
-  public static final String MAIL_PROPERTY = "sms-mailconfig";
-  public static final String ERROR_MESSAGES_PROPERTY = "sms-error-messages";
+  public static final String APPLICATION_PROPERTY = "application";
+  public static final String DB_PROPERTY = "email-db";
+  public static final String MAIL_PROPERTY = "email-mailconfig";
+  public static final String ERROR_MESSAGES_PROPERTY = "email-error-messages";
 
   protected static final List<String> PROPERTY_FILES =
       Arrays.asList(APPLICATION_PROPERTY, DB_PROPERTY, MAIL_PROPERTY, ERROR_MESSAGES_PROPERTY);
@@ -48,19 +48,19 @@ public class SmsSchedulerApplication {
 
   public static void main(String[] args) {
     String configLocation =
-        System.getProperty(SmsSchedulerApplication.PROPERTIES_LOCATION_ENV, "classpath:/");
-    String configPath = configLocation + " - " + SmsSchedulerApplication.PROPERTIES_FILE_NAME;
+        System.getProperty(EmailSchedulerApplication.PROPERTIES_LOCATION_ENV, "classpath:/");
+    String configPath = configLocation + " - " + EmailSchedulerApplication.PROPERTIES_FILE_NAME;
     log.info("Configpath: {}", configPath);
     if (StringUtils.isNotBlank(configLocation)) {
       Properties props = new Properties();
-      props.setProperty(SmsSchedulerApplication.PROPERTIES_LOCATION_ENV, configLocation);
-      props.setProperty("spring.config.name", SmsSchedulerApplication.PROPERTIES_FILE_NAME);
+      props.setProperty(EmailSchedulerApplication.PROPERTIES_LOCATION_ENV, configLocation);
+      props.setProperty("spring.config.name", EmailSchedulerApplication.PROPERTIES_FILE_NAME);
       ConfigurableApplicationContext applicationContext =
-          new SpringApplicationBuilder(SmsSchedulerApplication.class).properties(props).build()
+          new SpringApplicationBuilder(EmailSchedulerApplication.class).properties(props).build()
               .run(args);
       applicationContext.getEnvironment();
     } else {
-      SpringApplication.run(SmsSchedulerApplication.class, args);
+      SpringApplication.run(EmailSchedulerApplication.class, args);
     }
   }
 

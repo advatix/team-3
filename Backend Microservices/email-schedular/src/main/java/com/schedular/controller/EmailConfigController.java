@@ -19,8 +19,8 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping(path = "/email-config")
-@Api(value = "/email-config", consumes = MediaType.APPLICATION_JSON_VALUE,
+@RequestMapping(path = "/email")
+@Api(value = "/email", consumes = MediaType.APPLICATION_JSON_VALUE,
     produces = MediaType.APPLICATION_JSON_VALUE, tags = {"Email Config Services"}, hidden = false)
 public class EmailConfigController {
 
@@ -35,14 +35,9 @@ public class EmailConfigController {
           @ApiResponse(code = 403, message = "Not Authenticated"),
           @ApiResponse(code = 404, message = "Not found"),
           @ApiResponse(code = 500, message = "Internal Server Error")})
-  // @ApiImplicitParams({@ApiImplicitParam(name = Constant.AUTH_TOKEN, required = true,
-  // allowMultiple = false, paramType = "header", dataType = "string")})
   @GetMapping(path = "/getConfigDetails/{configId}")
   @ResponseBody
   public ResponseEntity<RestResponse<SMTPConfig>> getConfigDetails(
-      // @ApiIgnore @Authenticated UserTable userInfo,
-      // @RequestHeader(name = Constant.DEVICE_TYPE) DeviceType deviceType,
-      // @RequestHeader(name = Constant.APP_VERSION) String appVersion,
       @PathVariable(value = "configId") Integer configId) throws BaseException {
     return RestUtils.successResponse(configService.findById(configId));
   }

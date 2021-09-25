@@ -1,5 +1,5 @@
 server:
-  port: 9002
+  port: 9003
 
 spring:
   application:
@@ -11,6 +11,46 @@ spring:
       path: /api/
   zipkin:
     base-url: http://127.0.0.1:9411/
+  servlet:
+    multipart:
+      enabled: true
+      location: /tmp/
+      max-file-size: 1MB
+      max-request-size: 1MB
+      
+twillio:
+  callback:
+    post-url: ${application.base.url}/sms-callback/twillio-sms
+
+jobs:
+  enabled: true
+fixedRate:
+  in:
+    milliseconds: 60000
+    
+templates:
+  dir: mail-templates/
+  
+application:
+  url: http://test.com
+  base:
+    url: ${application.url}${spring.mvc.servlet.path}
+
+login:
+  token:
+    expiration:
+      minutes: 15
+
+email:
+  token:
+    expiration:
+      hours: 24
+      
+upload:
+  image:
+    base.url: ${application.url}
+    dir:
+      path: ${upload.image.base.url}/Upload/
 
 #eureka:
 #  client:
