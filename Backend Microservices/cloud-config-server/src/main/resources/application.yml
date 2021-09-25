@@ -1,0 +1,15 @@
+server:
+  port: 9296
+
+spring:
+  application:
+    name: CONFIG-SERVER
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/goyalankush/SpringBoot-Microservices.git
+          username: goyalankush
+          password: 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
+          clone-on-start: true
+          search-paths: cloud-config-server/config-server
