@@ -1,0 +1,29 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Batch Id</th>
+      <th scope="col">mail To</th>
+      <th scope="col">Mail CC</th>
+      <th scope="col">Mail BCC</th>
+      <th scope="col">Subject</th>
+      <th scope="col">messagesent</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of searchObject let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        {{item.batchid}}
+      </td>
+      <td>{{ item.mailto}}</td>
+      <td>{{ item.mailtocc}}</td>
+      <td>{{ item.mailtobcc}}</td>
+      <td>{{ item.subject}}</td>
+      <td>{{ item.messagesent}}</td>
+  </tr>
+    </tbody>
+  </table>
+  
+
+  
